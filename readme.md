@@ -45,16 +45,22 @@ CREATE TABLE users (
 drop table users;
 ```
 
+Command to run postgres locally using docker
+
+```
+docker run --name some-postgres -e POSTGRES_USER=sanchit -e POSTGRES_PASSWORD=password -e POSTGRES_DB=testdatabase -p 5432:5432 -d postgres
+```
+
 we need to use these comments in our migration file. After creating this we need to use below command to do the migration from the folder where migration file is created.
 
 ```
 
 // for migrating up
-goose -db "postgresql://sanchit:password@localhost:5432/yourdatabase?sslmode=disable" up
+goose postgres "postgresql://sanchit:password@localhost:5432/testdatabase?sslmode=disable" up 
 
 
 // for migrating down
-goose -db "postgresql://sanchit:password@localhost:5432/yourdatabase?sslmode=disable" down
+goose postgres "postgresql://sanchit:password@localhost:5432/testdatabase?sslmode=disable" down
 
 
 ```
